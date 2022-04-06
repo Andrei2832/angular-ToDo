@@ -1,0 +1,8 @@
+<ul class="tasks" >
+  <li class="task" [ngClass]="{'task-done': isCheck}">
+<!--    <p class="task__subtitle">Задача {{index}}</p>-->
+    <input class="task__checkbox" type="checkbox" (change)="isCheck = !isCheck">
+    <button class="task__delete" type="button" (click)="onDelete(task)">X</button>
+    <div class="task__text" contenteditable="true" [textContent]="task.title"></div>
+  </li>
+</ul>

@@ -1,0 +1,38 @@
+.container{
+  width: 600px;
+  margin: 30px auto;
+}
+.subtitle{
+  text-transform: uppercase;
+  font-family: Arial, serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px auto;
+  border-bottom: 2px solid #333;
+  padding: 5px;
+}
+.main__text-task{
+  font-family: Arial, serif;
+  font-size: 18px;
+  height: 40px;
+  width: 600px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: black;
+  padding: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+.main__add-task{
+  font-size: 20px;
+  background-color: transparent;
+  border: transparent;
+  color: #333;
+  float: right;
+}
+.main__add-task:hover{
+  color: grey;
+}
+.last {
+  border-bottom: 1px solid grey;
+}
