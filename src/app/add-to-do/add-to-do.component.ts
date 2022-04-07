@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {TaskService} from "../task.service";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {TaskService} from "../services/task.service";
 import {Task} from "../task";
+import {HttpService} from "../services/http.service";
+
 
 
 @Component({
@@ -10,23 +12,41 @@ import {Task} from "../task";
 })
 export class AddToDoComponent implements OnInit {
 
+  @ViewChild('inputTask',{static: false}) public test: ElementRef | undefined;
+
   tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private httpService: HttpService) { }
 
   getTasks(): void{
-    this.tasks = this.taskService.getTasks()
+    this.tasks = this.taskService.getTasks();
+  }
+
+  upload(): void{
+    this.taskService.upload();
+
+    this.getTasks();
   }
 
   ngOnInit(): void {
+    this.getTasks();
   }
 
-  onAdd(){
-    let textTask = (<HTMLInputElement>document.querySelector('#inputTask')).value.trim();
+  onCheckAll():void{
+    this.taskService.onCheckAll();
+    this.getTasks();
+  }
+
+  onDeleteCheck():void{
+    this.taskService.onDeleteCheck();
+    this.getTasks();
+  }
+
+  onAdd(textTask: string): void{
     if (textTask){
       this.taskService.onAdd(textTask);
       this.getTasks();
-      (<HTMLInputElement>document.querySelector('#inputTask')).value = '';
+      (this.test?.nativeElement).value = '';
     }
 
   }

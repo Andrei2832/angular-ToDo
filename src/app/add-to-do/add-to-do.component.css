@@ -30,9 +30,27 @@
   color: #333;
   float: right;
 }
-.main__add-task:hover{
+.hover:hover{
   color: grey;
 }
 .last {
   border-bottom: 1px solid grey;
+}
+.list{
+  margin-top: 60px;
+}
+.deleteAll{
+  font-size: 16px;
+  background-color: transparent;
+  border: transparent;
+  color: #333;
+  float: right;
+}
+.deleteCheck{
+
+  font-size: 16px;
+  background-color: transparent;
+  border: transparent;
+  color: #333;
+  float: left;
 }

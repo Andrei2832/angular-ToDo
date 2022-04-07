@@ -1,17 +1,26 @@
 <div class="container">
   <div class="main">
     <h2 class="subtitle">Добавить задачу:</h2>
-    <input id="inputTask" type="text" class="main__text-task" placeholder="Введите задачу" (keyup.enter)="onAdd()">
-    <button class="main__add-task" (click)="onAdd()" >Добавить</button>
+    <input #inputTask id="inputTask" type="text" class="main__text-task" placeholder="Введите задачу" (keyup.enter)="onAdd(inputTask.value)">
+    <button class="main__add-task hover" (click)="onAdd(inputTask.value)" >Добавить</button>
+    <button class="main__add-task hover" (click)="upload()" >Загрузить</button>
   </div>
 
   <div *ngIf="tasks.length; else noTasks" class="last">
     <h2 class="subtitle">Задачи:</h2>
-    <app-list-to-do
-      *ngFor="let task of tasks; let idx = index"
-      [task]="task"
-      [index]="idx + 1"
-    ></app-list-to-do>
+
+    <div>
+      <button class="deleteCheck hover" (click)="onDeleteCheck()">Удалить выбранное</button>
+      <button class="deleteAll hover" (click)="onCheckAll()">Выбрать всё</button>
+    </div>
+
+    <div class="list">
+      <app-list-to-do
+        *ngFor="let task of tasks; let idx = index"
+        [task]="task"
+        [index]="idx + 1"
+      ></app-list-to-do>
+    </div>
   </div>
 
   <ng-template #noTasks>
