@@ -18,21 +18,9 @@ export class TaskService {
   }
 
   upload(): void{
-    //let tasks: Task[] = [];
-
     this.httpService.get('https://jsonplaceholder.typicode.com/todos').subscribe((serv)=>{
-      this.setLocalStorageTasks(serv);
+      TaskService.setLocalStorageTasks(serv);
     });
-
-    // this.httpService.get('https://jsonplaceholder.typicode.com/todos').subscribe(value => {
-    //   for (let val of value){
-    //     tasks.push(val);
-    //     console.log(val);
-    //     this.setLocalStorageTasks(tasks);
-    //   }
-    // });
-
-
   }
 
   onAdd(textTask: string):void{
@@ -45,21 +33,20 @@ export class TaskService {
     }
     tasks.push(newTask);
 
-    this.setLocalStorageTasks(tasks);
+    TaskService.setLocalStorageTasks(tasks);
   }
 
   onDelete(id: number):void{
     let tasks = this.getTasks();
     tasks = tasks.filter((task)=>task.id != id);
 
-    this.setLocalStorageTasks(tasks);
+    TaskService.setLocalStorageTasks(tasks);
   }
   onDeleteCheck():void{
     let tasks = this.getTasks();
     tasks = tasks.filter((task)=>!task.completed);
 
-    this.setLocalStorageTasks(tasks);
-
+    TaskService.setLocalStorageTasks(tasks);
   }
   onCheckAll():void{
     let tasks = this.getTasks();
@@ -67,17 +54,17 @@ export class TaskService {
       task.completed = true;
     }
     console.log(tasks);
-    this.setLocalStorageTasks(tasks);
+    TaskService.setLocalStorageTasks(tasks);
   }
 
   onCheckbox(id: number):void{
     let tasks = this.getTasks();
     tasks.find((i) => i.id == id)!.completed = !tasks.find((i) => i.id == id)!.completed;
 
-    this.setLocalStorageTasks(tasks);
+    TaskService.setLocalStorageTasks(tasks);
   }
 
-  private setLocalStorageTasks(tasks: Task[]): void {
+  private static setLocalStorageTasks(tasks: Task[]): void {
     localStorage.setItem('tasks', JSON.stringify({tasks: tasks}));
   }
 

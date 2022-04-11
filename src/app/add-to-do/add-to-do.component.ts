@@ -20,6 +20,7 @@ export class AddToDoComponent implements OnInit {
 
   getTasks(): void{
     this.tasks = this.taskService.getTasks();
+    console.log('1')
   }
 
   upload(): void{
